@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">COINXPLORER</string>
+
+    <!-- Error -->
+    <string name="error_connection_not_found">Bağlantı yok! Lütfen bağlantı ayarlarınızı kontrol edin.</string>
+    <string name="error_connection_timeout">Bağlantı zaman aşımına uğradı!</string>
+    <string name="error_endpoint">Bağlantı adresine erişilemiyor!</string>
+    <string name="error_unknown">İsteğinizi şuanda gerçekleştiremiyoruz.\nLütfen daha sonra tekrar deneyin!</string>
+    <string name="error_many_request">Çok Fazla İstek Yapıldı.\nLütfen daha sonra tekrar deneyin!</string>
+
+</resources>

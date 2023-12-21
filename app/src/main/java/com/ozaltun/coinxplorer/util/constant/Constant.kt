@@ -1,0 +1,19 @@
+package com.ozaltun.coinxplorer.util.constant
+
+import android.content.Context
+import com.ozaltun.coinxplorer.R
+import com.ozaltun.coinxplorer.di.CoinxplorerApp
+
+object Constant {
+    private fun getContext(): Context {
+        return CoinxplorerApp.getAppContext()
+    }
+
+    val CLIENT_ERROR = getContext().getString(R.string.error_unknown)
+    val SERVER_ERROR = getContext().getString(R.string.error_connection_timeout)
+    val NETWORK_ERROR = getContext().getString(R.string.error_connection_not_found)
+    val HTTP_UNKNOWN_ERROR = getContext().getString(R.string.error_unknown)
+    val UNKNOWN_ERROR = getContext().getString(R.string.error_unknown)
+    val MANY_REQUEST_ERROR = getContext().getString(R.string.error_many_request)
+    val SOCKET_TIMEOUT_ERROR = getContext().getString(R.string.error_connection_timeout)
+}
