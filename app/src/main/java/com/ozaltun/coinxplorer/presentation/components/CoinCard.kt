@@ -1,12 +1,15 @@
 package com.ozaltun.coinxplorer.presentation.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.TrendingDown
 import androidx.compose.material.icons.filled.TrendingFlat
@@ -15,6 +18,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -22,16 +26,22 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.ozaltun.coinxplorer.R
+import com.ozaltun.coinxplorer.data.remote.dto.Description
+import com.ozaltun.coinxplorer.data.remote.dto.Image
 import com.ozaltun.coinxplorer.domain.model.Coin
 import com.ozaltun.coinxplorer.domain.model.CoinDetail
 import com.ozaltun.coinxplorer.domain.model.CoinSearch
+import com.ozaltun.coinxplorer.presentation.ui.theme.COINXPLORERTheme
 import com.ozaltun.coinxplorer.presentation.ui.theme.Shapes
+import com.ozaltun.coinxplorer.util.constant.Dimens
 import com.ozaltun.coinxplorer.util.constant.Dimens.ExtraSmallPadding2
 import com.ozaltun.coinxplorer.util.constant.Dimens.FontSize
 import com.ozaltun.coinxplorer.util.constant.Dimens.FontSizeSmall
@@ -94,7 +104,7 @@ fun CoinCard(
                     .weight(1f)
                     .padding(end = 8.dp),
                 horizontalArrangement = Arrangement.End
-            ){
+            ) {
                 Icon(
                     imageVector = when {
                         coinPricePercentage > 0 -> Icons.Default.TrendingUp
@@ -130,8 +140,7 @@ fun CoinDetailCard(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(ExtraSmallPadding2)
-            .clickable { onClick?.invoke() },
+            .padding(ExtraSmallPadding2),
         colors = CardDefaults.cardColors(
             containerColor = colorResource(id = R.color.card_background)
         ),
@@ -177,7 +186,7 @@ fun CoinDetailCard(
                     .weight(1f)
                     .padding(end = 8.dp),
                 horizontalArrangement = Arrangement.End
-            ){
+            ) {
                 Icon(
                     imageVector = when {
                         coinPricePercentage > 0 -> Icons.Default.TrendingUp
@@ -201,5 +210,44 @@ fun CoinDetailCard(
                 )
             }
         }
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(bottomStart = 12.dp, bottomEnd = 12.dp))
+                .background(colorResource(id = R.color.primary))
+                .padding(ExtraSmallPadding2)
+                .clickable { onClick?.invoke() },
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                text = stringResource(id = R.string.delete_fav),
+                style = TextStyle(
+                    fontSize = FontSize,
+                    fontWeight = FontWeight.Bold
+                )
+            )
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun CoinDetailCardPreview() {
+    COINXPLORERTheme {
+        CoinDetailCard(
+            coin = CoinDetail(
+                id = "bitcoin",
+                description = Description(en = "Description Test"),
+                image = Image(large = "", small = "", thumb = ""),
+                last_updated = "",
+                name = "Bitcoin",
+                sentiment_votes_down_percentage = 12.2,
+                sentiment_votes_up_percentage = 10.2,
+                symbol = "BTC",
+                hashing_algorithm = "256",
+                currentPrice = 43.34,
+                price_change_24h = 1.2
+            )
+        )
     }
 }

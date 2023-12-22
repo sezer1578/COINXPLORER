@@ -58,7 +58,9 @@ fun FavoriteScreen(viewModel: FavoriteScreenViewModel = hiltViewModel()) {
                 .fillMaxHeight()
                 .padding(paddingValues = it)
         ) {
-            CoinDetailList(coin = state.data, onClick = {})
+            CoinDetailList(coin = state.data, onClick = {
+                viewModel.deleteCoin(coin = it)
+            })
         }
     }
 }

@@ -34,7 +34,7 @@ fun CoinList(
 @Composable
 fun CoinDetailList(
     coin: List<CoinDetail>,
-    onClick: (String) -> Unit
+    onClick: (CoinDetail) -> Unit
 ) {
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
@@ -45,7 +45,7 @@ fun CoinDetailList(
             count = coin.size
         ) {
             coin[it].let { coin ->
-                CoinDetailCard(coin = coin, onClick = { onClick(coin.id) })
+                CoinDetailCard(coin = coin, onClick = { onClick(coin) })
             }
         }
     }

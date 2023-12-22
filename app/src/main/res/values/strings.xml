@@ -32,4 +32,5 @@
 
     <!-- FavScreen -->
     <string name="fav_screen">Kaydettiklerim</string>
+    <string name="delete_fav">Kaydettiklerimden Sil</string>
 </resources>
