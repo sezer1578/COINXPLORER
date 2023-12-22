@@ -20,5 +20,5 @@ interface CoinxplorerApi {
     suspend fun getCoinById(@Path("id") id: String): CoinDetailDTO
 
     @GET(SEARCH_COIN)
-    suspend fun coinSearch(@Query("query") query: String): List<CoinSearchDTO>
+    suspend fun coinSearch(@Query("query") query: String): CoinSearchResponse
 }

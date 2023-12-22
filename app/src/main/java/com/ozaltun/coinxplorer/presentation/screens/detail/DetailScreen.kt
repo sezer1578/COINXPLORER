@@ -17,6 +17,7 @@ import androidx.compose.ui.text.font.FontWeight
 @Composable
 fun DetailScreen(
     state: DetailScreenState,
+    id:String,
     navigateUp: () -> Unit
 ) {
     Scaffold(modifier = Modifier.fillMaxSize()) {
@@ -27,7 +28,7 @@ fun DetailScreen(
                 .padding(paddingValues = it)
         ) {
             Text(
-                text = "${state.data?.id}",
+                text = id,
                 style = TextStyle(
                     fontSize = MaterialTheme.typography.headlineLarge.fontSize,
                     fontWeight = FontWeight.Bold,

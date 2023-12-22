@@ -7,26 +7,26 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.ozaltun.coinxplorer.domain.model.Coin
+import com.ozaltun.coinxplorer.domain.model.CoinSearch
 import com.ozaltun.coinxplorer.util.constant.Dimens.ExtraSmallPadding2
 import com.ozaltun.coinxplorer.util.constant.Dimens.MediumPadding1
 
 @Composable
 fun CoinList(
-    modifier: Modifier,
     coin: List<Coin>,
-    onClick: (Coin) -> Unit
+    onClick: (String) -> Unit
 ) {
     LazyColumn(
-        modifier = modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(MediumPadding1),
         contentPadding = PaddingValues(all = ExtraSmallPadding2)
     ) {
-        items(
-            count = coin.size
-        ) {
-            coin[it].let { coin ->
-                CoinCard(coin = coin, onClick = { onClick(coin) })
+            items(
+                count = coin.size
+            ) {
+                coin[it].let { coin ->
+                    CoinCard(coin = coin, onClick = { onClick(coin.id) })
+                }
             }
-        }
     }
 }

@@ -51,7 +51,7 @@ class CoinRepositoryImpl @Inject constructor(
     override fun coinSearch(query: String): Flow<Resource<List<CoinSearch>>> = flow {
         emit(Resource.Loading(isLoading = true))
         try {
-            emit(Resource.Success(data = api.coinSearch(query = query).map {
+            emit(Resource.Success(data = api.coinSearch(query = query).coins.map {
                 it.toCoinSearch()
             }))
             emit(Resource.Loading(isLoading = false))

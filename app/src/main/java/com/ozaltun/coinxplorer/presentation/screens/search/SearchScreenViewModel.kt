@@ -16,28 +16,48 @@ import javax.inject.Inject
 class SearchScreenViewModel @Inject constructor(
     private val searchCoinUseCase: SearchCoinUseCase
 ) : ViewModel() {
-    var state by mutableStateOf(SearchScreenUIState())
+    var state by mutableStateOf(SearchState())
+    var dialogState by mutableStateOf(false)
 
-    fun searchCoin(query: String) {
+    fun onEvent(event: SearchEvent) {
+        when (event) {
+            is SearchEvent.UpdateSearchQuery -> {
+                state = state.copy(searchQuery = event.searchQuery) //event.searchQuery)
+            }
+
+            is SearchEvent.SearchCoins -> {
+                searchCoin()
+            }
+        }
+    }
+
+
+
+     fun searchCoin() {
         viewModelScope.launch(Dispatchers.IO) {
-            searchCoinUseCase.invoke(query = query).collect { result ->
-                when (result) {
-                    is Resource.Loading -> {
-                        state = state.copy(
-                            isLoading = true
-                        )
-                    }
+            viewModelScope.launch(Dispatchers.IO) {
+                searchCoinUseCase.invoke(query = state.searchQuery).collect { result ->
+                    when (result) {
+                        is Resource.Loading -> {
+                            state = state.copy(
+                                isLoading = result.isLoading
+                            )
+                        }
 
-                    is Resource.Success -> {
-                        state = state.copy(
-                            data = result.data
-                        )
-                    }
+                        is Resource.Success -> {
+                            state = state.copy(
+                                data = result.data
+                            )
+                        }
 
-                    is Resource.Error -> {
-                        state = state.copy(
-                            error = result.exception.message.toString()
-                        )
+                        is Resource.Error -> {
+                            state = state.copy(
+                                error = result.exception.message.toString()
+                            )
+                            if (state.error != null) {
+                                dialogState = true
+                            }
+                        }
                     }
                 }
             }

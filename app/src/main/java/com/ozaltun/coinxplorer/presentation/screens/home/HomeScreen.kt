@@ -28,6 +28,7 @@ import com.ozaltun.coinxplorer.domain.model.Coin
 import com.ozaltun.coinxplorer.presentation.components.CoinDialog
 import com.ozaltun.coinxplorer.presentation.components.CoinList
 import com.ozaltun.coinxplorer.presentation.components.SearchBar
+import com.ozaltun.coinxplorer.presentation.screens.search.SearchScreenViewModel
 import com.ozaltun.coinxplorer.util.constant.Dimens.ExtraSmallPadding
 import com.ozaltun.coinxplorer.util.constant.Dimens.MediumPadding1
 import timber.log.Timber
@@ -36,8 +37,8 @@ import timber.log.Timber
 fun HomeScreen(
     state: HomeState,
     navigateToSearch: () -> Unit,
-    navigateToDetails: (Coin) -> Unit,
-    viewModel: HomeScreenViewModel = hiltViewModel()
+    navigateToDetails: (String) -> Unit,
+    viewModel: HomeScreenViewModel = hiltViewModel(),
 ) {
     if (viewModel.dialogState) {
         CoinDialog(
@@ -80,9 +81,6 @@ fun HomeScreen(
                     )
                     Spacer(modifier = Modifier.height(ExtraSmallPadding))
                     CoinList(
-                        modifier = Modifier.padding(
-                            horizontal = MediumPadding1
-                        ),
                         coin = state.data,
                         onClick = navigateToDetails
                     )

@@ -109,7 +109,7 @@ fun NewsNavigator() {
         NavHost(
             navController = navController,
             startDestination = Route.HomeScreen.route,
-            modifier = Modifier.padding(bottom = bottomPadding)
+            //modifier = Modifier.padding(bottom = bottomPadding)
         ) {
             composable(route = Route.HomeScreen.route) { backStackEntry ->
                 val viewModel: HomeScreenViewModel = hiltViewModel()
@@ -123,31 +123,40 @@ fun NewsNavigator() {
                             navController = navController,
                             route = Route.SearchScreen.route
                         )
-                    }, navigateToDetails = { coin ->
+                    }, navigateToDetails = {
                         navigateToDetails(
                             navController = navController,
-                            coin = coin
+                            coin = it
                         )
                     }
                 )
             }
             composable(route = Route.SearchScreen.route) {
                 val viewModel: SearchScreenViewModel = hiltViewModel()
+                val state = viewModel.state
                 OnBackClickStateSaver(navController = navController)
                 SearchScreen(
-                )
+                    state = state,
+                    event = viewModel::onEvent,
+                    navigateToDetails = {
+                        navigateToDetails(
+                            navController = navController,
+                            coin = it.id
+                        )
 
+                    }
+                )
             }
             composable(route = Route.DetailsScreen.route) {
                 val viewModel: DetailScreenViewModel = hiltViewModel()
-                val coinJson = navController.previousBackStackEntry?.savedStateHandle?.get<String>("coin")
-                    val coin = Gson().fromJson(coinJson,Coin::class.java)
-                    coin?.let { coin ->
+                navController.previousBackStackEntry?.savedStateHandle?.get<String>("coin")
+                    ?.let { coin ->
                         LaunchedEffect(key1 = coin) {
-                            viewModel.getCoinById(id = coin.id)
+                            viewModel.getCoinById(id = coin)
                         }
                         DetailScreen(
                             state = viewModel.state,
+                            id = coin,
                             navigateUp = { navController.navigateUp() }
                         )
                     }
@@ -188,9 +197,9 @@ private fun navigateToTab(navController: NavController, route: String) {
     }
 }
 
-private fun navigateToDetails(navController: NavController, coin: Coin) {
-    val coinJson = Gson().toJson(coin)
-    navController.currentBackStackEntry?.savedStateHandle?.set("coin", coinJson)
+private fun navigateToDetails(navController: NavController, coin: String) {
+    //val coinJson = Gson().toJson(coin)
+    navController.currentBackStackEntry?.savedStateHandle?.set("coin", coin)
     navController.navigate(
         route = Route.DetailsScreen.route
     )
