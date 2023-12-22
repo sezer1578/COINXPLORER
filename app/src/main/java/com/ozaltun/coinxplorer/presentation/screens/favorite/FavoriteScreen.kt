@@ -1,4 +1,4 @@
-package com.ozaltun.coinxplorer.presentation.screens.detail
+package com.ozaltun.coinxplorer.presentation.screens.favorite
 
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -15,10 +15,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 
 @Composable
-fun DetailScreen(
-    state: DetailScreenState,
-    navigateUp: () -> Unit
-) {
+fun FavoriteScreen() {
     Scaffold(modifier = Modifier.fillMaxSize()) {
         BoxWithConstraints(
             modifier = Modifier
@@ -27,7 +24,7 @@ fun DetailScreen(
                 .padding(paddingValues = it)
         ) {
             Text(
-                text = "${state.data?.id}",
+                text = "FavoriteScreen",
                 style = TextStyle(
                     fontSize = MaterialTheme.typography.headlineLarge.fontSize,
                     fontWeight = FontWeight.Bold,

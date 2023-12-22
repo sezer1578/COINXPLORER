@@ -16,15 +16,15 @@ import javax.inject.Inject
 class HomeScreenViewModel @Inject constructor(
     private val getCoinUseCase: GetCoinUseCase
 ) : ViewModel() {
-    var state by mutableStateOf(HomeScreenUIState())
-
+    var state by mutableStateOf(HomeState(isLoading = true))
+    var dialogState by mutableStateOf(false)
     fun getCoins() {
         viewModelScope.launch(Dispatchers.IO) {
             getCoinUseCase.invoke().collect { result ->
                 when (result) {
                     is Resource.Loading -> {
                         state = state.copy(
-                            isLoading = true
+                            isLoading = result.isLoading
                         )
                     }
 
@@ -38,6 +38,9 @@ class HomeScreenViewModel @Inject constructor(
                         state = state.copy(
                             error = result.exception.message.toString()
                         )
+                        if (state.error != null) {
+                            dialogState = true
+                        }
                     }
                 }
             }

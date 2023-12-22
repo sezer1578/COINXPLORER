@@ -147,6 +147,9 @@ dependencies {
     //SplashScreen
     implementation("androidx.core:core-splashscreen:1.0.0")
 
+    //Extended Icons
+    implementation("androidx.compose.material:material-icons-extended:1.5.4")
+
     //Debug Tools
     debugImplementation ("com.github.chuckerteam.chucker:library:3.5.2")
     releaseImplementation ("com.github.chuckerteam.chucker:library-no-op:3.5.2")

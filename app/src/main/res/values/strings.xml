@@ -7,9 +7,21 @@
     <string name="error_endpoint">Bağlantı adresine erişilemiyor!</string>
     <string name="error_unknown">İsteğinizi şuanda gerçekleştiremiyoruz.\nLütfen daha sonra tekrar deneyin!</string>
     <string name="error_many_request">Çok Fazla İstek Yapıldı.\nLütfen daha sonra tekrar deneyin!</string>
+    <!-- Error -->
+    <string name="alert_okay">Tamam</string>
+    <string name="alert">Uyarı!</string>
 
+    <!-- OnBoarding Screen -->
     <string name="next">İleri</string>
     <string name="back">Geri</string>
     <string name="get_started">Başla</string>
-
+    <!-- BottomBar -->
+    <string name="home_screen">Home</string>
+    <string name="search_screen">Search</string>
+    <string name="favorite_screen">Favorite</string>
+    <string name="profile_screen">Profile</string>
+    <!-- EmptyScreen -->
+    <string name="try_again">Tekrar Dene</string>
+    <!-- HomeScreen -->
+    <string name="search">Search</string>
 </resources>

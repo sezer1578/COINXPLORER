@@ -22,12 +22,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.ozaltun.coinxplorer.R
-import com.ozaltun.coinxplorer.presentation.common.CoinButton
-import com.ozaltun.coinxplorer.presentation.common.CoinTextButton
+import com.ozaltun.coinxplorer.presentation.components.CoinButton
+import com.ozaltun.coinxplorer.presentation.components.CoinTextButton
 import com.ozaltun.coinxplorer.presentation.screens.onboarding.components.OnBoardingPage
 import com.ozaltun.coinxplorer.presentation.screens.onboarding.components.PagerIndicator
 import com.ozaltun.coinxplorer.util.constant.Dimens.MediumPadding2

@@ -40,6 +40,7 @@ fun CoinDetailDTO.toCoinDetail(): CoinDetail {
         name = name,
         sentiment_votes_down_percentage = sentiment_votes_down_percentage,
         sentiment_votes_up_percentage = sentiment_votes_up_percentage,
-        symbol = symbol
+        symbol = symbol,
+        hashing_algorithm = hashing_algorithm
     )
 }

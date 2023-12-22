@@ -6,8 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
-import com.ozaltun.coinxplorer.presentation.screens.home.HomeScreen
-import com.ozaltun.coinxplorer.presentation.screens.home.HomeScreenViewModel
+import com.ozaltun.coinxplorer.presentation.navgraph.coin_navigator.NewsNavigator
 import com.ozaltun.coinxplorer.presentation.screens.onboarding.OnBoardingScreen
 import com.ozaltun.coinxplorer.presentation.screens.onboarding.OnBoardingViewModel
 
@@ -35,7 +34,7 @@ fun NavGraph(
             composable(
                 route = Route.CoinNavigatorScreen.route
             ) {
-                HomeScreen()
+               NewsNavigator()
             }
         }
     }

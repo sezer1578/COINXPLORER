@@ -16,7 +16,7 @@ import javax.inject.Inject
 class DetailScreenViewModel @Inject constructor(
     private val getCoinByIdUseCase: GetCoinByIdUseCase
 ) : ViewModel() {
-    var state by mutableStateOf(DetailScreenUIState())
+    var state by mutableStateOf(DetailScreenState())
 
     fun getCoinById(id: String) {
         viewModelScope.launch(Dispatchers.IO) {

@@ -1,4 +1,4 @@
-package com.ozaltun.coinxplorer.presentation.common
+package com.ozaltun.coinxplorer.presentation.components
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults

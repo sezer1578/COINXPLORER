@@ -12,4 +12,5 @@ data class CoinDetail(
     val sentiment_votes_down_percentage: Double,
     val sentiment_votes_up_percentage: Double,
     val symbol: String,
+    val hashing_algorithm: String
 )

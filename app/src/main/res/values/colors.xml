@@ -4,4 +4,10 @@
     <color name="text">#FF4E4B66</color>
     <color name="primary">#3BA2FF</color>
     <color name="secondary">#59738B</color>
+    <color name="input_background">#fff</color>
+    <color name="card_background">#fff</color>
+    <color name="placeholder">#A0A3BD</color>
+    <color name="shimmer">#C3C3C3</color>
+    <color name="green">#02F122</color>
+    <color name="red">#FF0015</color>
 </resources>
