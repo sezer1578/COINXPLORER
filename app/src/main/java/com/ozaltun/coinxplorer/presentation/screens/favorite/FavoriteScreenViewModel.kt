@@ -1,4 +1,4 @@
-package com.ozaltun.coinxplorer.presentation.screens.detail
+package com.ozaltun.coinxplorer.presentation.screens.favorite
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -6,25 +6,27 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ozaltun.coinxplorer.domain.model.CoinDetail
-import com.ozaltun.coinxplorer.domain.usecase.GetCoinByIdUseCase
-import com.ozaltun.coinxplorer.domain.usecase.local_usecase.InsertFavCoinUseCase
+import com.ozaltun.coinxplorer.domain.usecase.local_usecase.DeleteFavCoinUseCase
+import com.ozaltun.coinxplorer.domain.usecase.local_usecase.GetFavCoinUseCase
+import com.ozaltun.coinxplorer.presentation.screens.detail.DetailScreenState
 import com.ozaltun.coinxplorer.util.network.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DetailScreenViewModel @Inject constructor(
-    private val getCoinByIdUseCase: GetCoinByIdUseCase,
-    private val insertFavCoinUseCase: InsertFavCoinUseCase
+class FavoriteScreenViewModel @Inject constructor(
+    private val getFavCoinUseCase: GetFavCoinUseCase,
+    private val getDeleteFavCoinUseCase: DeleteFavCoinUseCase
 ) : ViewModel() {
-    var state by mutableStateOf(DetailScreenState(isLoading = true))
+
+    var state by mutableStateOf(FavoriteScreenState(isLoading = true))
     var dialogState by mutableStateOf(false)
-    fun getCoinById(id: String) {
-        viewModelScope.launch(Dispatchers.IO) {
-            getCoinByIdUseCase.invoke(id = id).collect { result ->
+
+    fun getAllFavCoin() {
+        viewModelScope.launch(Dispatchers.Main) {
+            getFavCoinUseCase.invoke().collect { result ->
                 when (result) {
                     is Resource.Loading -> {
                         state = state.copy(
@@ -46,14 +48,14 @@ class DetailScreenViewModel @Inject constructor(
                             dialogState = true
                         }
                     }
+
                 }
             }
         }
     }
 
-    fun insertFavCoin(coin: CoinDetail) {
-        viewModelScope.launch(Dispatchers.IO) {
-            insertFavCoinUseCase.invoke(coin = coin)
-        }
+    fun deleteCoin(coin: CoinDetail) {
+        getDeleteFavCoinUseCase.invoke(coin)
+        getAllFavCoin()
     }
 }

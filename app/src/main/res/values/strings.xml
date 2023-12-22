@@ -29,4 +29,7 @@
     <string name="hashing_algorithm">Hashing Algoritması</string>
     <string name="description">Açıklama için Tıkla</string>
     <string name="price_change_24h">Son 24 saat Değişim Yüzdesi</string>
+
+    <!-- FavScreen -->
+    <string name="fav_screen">Kaydettiklerim</string>
 </resources>

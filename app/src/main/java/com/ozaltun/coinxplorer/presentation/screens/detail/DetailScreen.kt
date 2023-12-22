@@ -52,6 +52,7 @@ import com.ozaltun.coinxplorer.presentation.screens.detail.componets.DetailTopBa
 import com.ozaltun.coinxplorer.presentation.ui.theme.COINXPLORERTheme
 import com.ozaltun.coinxplorer.presentation.ui.theme.Shapes
 import com.ozaltun.coinxplorer.util.constant.Dimens
+import timber.log.Timber
 
 @Composable
 fun DetailScreen(
@@ -78,7 +79,7 @@ fun DetailScreen(
     Scaffold(modifier = Modifier.fillMaxSize(),
         topBar = {
             DetailTopBar(onBookMarkClick = {
-
+                state.data?.let { viewModel.insertFavCoin(coin = it) }
             }) {
                 navigateUp.invoke()
             }
