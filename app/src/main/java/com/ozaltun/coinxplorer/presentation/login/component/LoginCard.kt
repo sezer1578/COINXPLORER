@@ -9,11 +9,13 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Mail
 import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -41,9 +43,11 @@ import com.ozaltun.coinxplorer.util.constant.Dimens.ExtraSmallPadding3
 @Composable
 fun LoginCard(
     buttonText: String,
-    title:String,
-    text:String,
-    onValueChange: (String) -> Unit = {},
+    title: String,
+    textMail: String,
+    textPassword: String,
+    onValueChangeMail: (String) -> Unit = {},
+    onValueChangePassword: (String) -> Unit = {},
     onClick: () -> Unit
 ) {
     var passwordVisibility: Boolean by remember { mutableStateOf(false) }
@@ -70,8 +74,8 @@ fun LoginCard(
             )
             LoginTextField(
                 label = stringResource(id = R.string.e_mail),
-                text = text,
-                onValueChange = onValueChange,
+                text = textMail,
+                onValueChange = onValueChangeMail,
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Email,
                     imeAction = ImeAction.Next
@@ -88,13 +92,22 @@ fun LoginCard(
                     keyboardType = KeyboardType.Password,
                     imeAction = ImeAction.Done
                 ),
+                text = textPassword,
+                onValueChange = onValueChangePassword,
                 visualTransformation = if (passwordVisibility) VisualTransformation.None else PasswordVisualTransformation(),
                 passwordVisibility = true
             ) {
-                Icon(
-                    imageVector = Icons.Default.Visibility, contentDescription = null,
-                    tint = colorResource(id = R.color.primary)
-                )
+                IconButton(onClick = { passwordVisibility = !passwordVisibility }) {
+                    if (passwordVisibility) Icon(
+                        imageVector = Icons.Default.Visibility,
+                        contentDescription = "icon visibility",
+                        tint = colorResource(id = R.color.primary)
+                    ) else Icon(
+                        imageVector = Icons.Default.VisibilityOff,
+                        contentDescription = "icon visibility",
+                        tint = colorResource(id = R.color.primary)
+                    )
+                }
             }
             Button(
                 modifier = Modifier.fillMaxWidth(),
