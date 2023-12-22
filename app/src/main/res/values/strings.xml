@@ -11,6 +11,12 @@
     <string name="alert_okay">Tamam</string>
     <string name="alert">Uyarı!</string>
 
+    <!-- LoginScreen -->
+    <string name="sign_in">Giriş Yapın</string>
+    <string name="e_mail">Email</string>
+    <string name="password">Şifre</string>
+    <string name="sign_up">Kayıt Ol</string>
+
     <!-- OnBoarding Screen -->
     <string name="next">İleri</string>
     <string name="back">Geri</string>

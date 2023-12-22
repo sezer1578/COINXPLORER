@@ -8,6 +8,7 @@ object Dimens {
 
     val ExtraSmallPadding = 3.dp
     val ExtraSmallPadding2 = 6.dp
+    val ExtraSmallPadding3 = 12.dp
     val MediumPadding1 = 24.dp
     val MediumPadding2 = 30.dp
     val MediumPadding3 = 40.dp

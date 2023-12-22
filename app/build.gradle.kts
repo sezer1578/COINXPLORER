@@ -4,6 +4,7 @@ plugins {
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
     id("kotlin-parcelize")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -71,6 +72,7 @@ android {
 }
 
 dependencies {
+
     val nav_version = "2.6.0"
     val lifecycle_version = "2.6.2"
     val room_version = "2.6.1"
@@ -128,6 +130,11 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.11.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
     implementation("com.google.code.gson:gson:2.9.0")
+
+    //Firebase
+    implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-auth:22.3.0")
 
     //Room Database
     implementation ("androidx.room:room-ktx:$room_version")

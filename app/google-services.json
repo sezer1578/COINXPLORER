@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "896360886457",
+    "project_id": "referenceprojectsandroid",
+    "storage_bucket": "referenceprojectsandroid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:896360886457:android:800c7338555fadf1c1ab68",
+        "android_client_info": {
+          "package_name": "com.ozaltun.coinxplorer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSnr5_tW79pthd3i3gNOVzLmcsg70JaVY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
