@@ -16,15 +16,15 @@ import javax.inject.Inject
 class DetailScreenViewModel @Inject constructor(
     private val getCoinByIdUseCase: GetCoinByIdUseCase
 ) : ViewModel() {
-    var state by mutableStateOf(DetailScreenState())
-
+    var state by mutableStateOf(DetailScreenState(isLoading = true))
+    var dialogState by mutableStateOf(false)
     fun getCoinById(id: String) {
         viewModelScope.launch(Dispatchers.IO) {
             getCoinByIdUseCase.invoke(id = id).collect { result ->
                 when (result) {
                     is Resource.Loading -> {
                         state = state.copy(
-                            isLoading = true
+                            isLoading = result.isLoading
                         )
                     }
 
@@ -38,6 +38,9 @@ class DetailScreenViewModel @Inject constructor(
                         state = state.copy(
                             error = result.exception.message.toString()
                         )
+                        if (state.error != null) {
+                            dialogState = true
+                        }
                     }
                 }
             }

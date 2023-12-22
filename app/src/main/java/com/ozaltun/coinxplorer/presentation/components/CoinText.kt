@@ -16,8 +16,7 @@ fun CoinText(
     text: String,
     color: Color = colorResource(id = R.color.text),
     style: TextStyle = LocalTextStyle.current,
-    minLines: Int = 1,
-    textAlign:TextAlign? = null
+    textAlign: TextAlign? = null
 ) {
     val formattedText = if (text.contains('.')) {
         val splitText = text.split('.')
@@ -27,9 +26,7 @@ fun CoinText(
         } else {
             text
         }
-    } else if (text.length > 10){
-        "${text.take(10)}..."
-    }else {
+    } else {
         text
     }
     Text(
@@ -37,7 +34,6 @@ fun CoinText(
         text = formattedText,
         color = color,
         style = style,
-        minLines = minLines,
         textAlign = textAlign
     )
 }

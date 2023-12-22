@@ -29,6 +29,7 @@ data class CoinDetailDTO(
     val sentiment_votes_up_percentage: Double,
     val status_updates: List<Any>,
     val symbol: String,
+    val market_data:MarketData
 )
 
 fun CoinDetailDTO.toCoinDetail(): CoinDetail {
@@ -41,6 +42,7 @@ fun CoinDetailDTO.toCoinDetail(): CoinDetail {
         sentiment_votes_down_percentage = sentiment_votes_down_percentage,
         sentiment_votes_up_percentage = sentiment_votes_up_percentage,
         symbol = symbol,
-        hashing_algorithm = hashing_algorithm
+        hashing_algorithm = hashing_algorithm,
+        currentPrice = market_data.current_price.usd
     )
 }

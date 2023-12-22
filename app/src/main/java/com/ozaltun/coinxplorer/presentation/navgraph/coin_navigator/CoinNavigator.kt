@@ -151,11 +151,7 @@ fun NewsNavigator() {
                 val viewModel: DetailScreenViewModel = hiltViewModel()
                 navController.previousBackStackEntry?.savedStateHandle?.get<String>("coin")
                     ?.let { coin ->
-                        LaunchedEffect(key1 = coin) {
-                            viewModel.getCoinById(id = coin)
-                        }
                         DetailScreen(
-                            state = viewModel.state,
                             id = coin,
                             navigateUp = { navController.navigateUp() }
                         )
