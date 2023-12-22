@@ -16,4 +16,7 @@ object Constant {
     val UNKNOWN_ERROR = getContext().getString(R.string.error_unknown)
     val MANY_REQUEST_ERROR = getContext().getString(R.string.error_many_request)
     val SOCKET_TIMEOUT_ERROR = getContext().getString(R.string.error_connection_timeout)
+
+    const val USER_SETTINGS = "user_settings"
+    const val APP_ENTRY = "app_entry"
 }

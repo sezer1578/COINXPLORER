@@ -8,4 +8,8 @@
     <string name="error_unknown">İsteğinizi şuanda gerçekleştiremiyoruz.\nLütfen daha sonra tekrar deneyin!</string>
     <string name="error_many_request">Çok Fazla İstek Yapıldı.\nLütfen daha sonra tekrar deneyin!</string>
 
+    <string name="next">İleri</string>
+    <string name="back">Geri</string>
+    <string name="get_started">Başla</string>
+
 </resources>

@@ -135,6 +135,18 @@ dependencies {
     implementation("androidx.room:room-ktx:$room_version")
     kapt("androidx.room:room-compiler:$room_version")
 
+    //Coil
+    implementation("io.coil-kt:coil-compose:2.4.0")
+
+    //Datastore
+    implementation ("androidx.datastore:datastore-preferences:1.0.0")
+
+    //Accompanist
+    implementation ("com.google.accompanist:accompanist-systemuicontroller:0.31.4-beta")
+
+    //SplashScreen
+    implementation("androidx.core:core-splashscreen:1.0.0")
+
     //Debug Tools
     debugImplementation ("com.github.chuckerteam.chucker:library:3.5.2")
     releaseImplementation ("com.github.chuckerteam.chucker:library-no-op:3.5.2")

@@ -1,8 +1,11 @@
 package com.ozaltun.coinxplorer.di
 
+import android.app.Application
 import com.ozaltun.coinxplorer.data.remote.CoinxplorerApi
 import com.ozaltun.coinxplorer.data.repository.CoinRepositoryImpl
+import com.ozaltun.coinxplorer.data.repository.DataStoreManagerImpl
 import com.ozaltun.coinxplorer.domain.repository.CoinRepository
+import com.ozaltun.coinxplorer.domain.repository.DataStoreManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,4 +21,10 @@ object RepositoryModule {
     fun provideCoinRepository(api: CoinxplorerApi): CoinRepository {
         return CoinRepositoryImpl(api)
     }
+
+    @Provides
+    @Singleton
+    fun provideDataStoreManager(
+        application: Application
+    ): DataStoreManager = DataStoreManagerImpl(context = application)
 }
