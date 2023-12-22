@@ -43,6 +43,7 @@ fun CoinDetailDTO.toCoinDetail(): CoinDetail {
         sentiment_votes_up_percentage = sentiment_votes_up_percentage,
         symbol = symbol,
         hashing_algorithm = hashing_algorithm,
-        currentPrice = market_data.current_price.usd
+        currentPrice = market_data.current_price.usd,
+        price_change_24h = market_data.price_change_24h
     )
 }

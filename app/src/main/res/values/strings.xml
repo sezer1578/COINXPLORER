@@ -27,4 +27,6 @@
     <!-- DetailScreen -->
     <string name="current_price">Güncel Fiyat</string>
     <string name="hashing_algorithm">Hashing Algoritması</string>
+    <string name="description">Açıklama için Tıkla</string>
+    <string name="price_change_24h">Son 24 saat Değişim Yüzdesi</string>
 </resources>

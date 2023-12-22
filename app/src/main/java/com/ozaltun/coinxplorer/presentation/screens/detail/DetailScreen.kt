@@ -1,5 +1,7 @@
 package com.ozaltun.coinxplorer.presentation.screens.detail
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -13,17 +15,25 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material.icons.filled.Warning
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
@@ -40,6 +50,7 @@ import com.ozaltun.coinxplorer.presentation.components.CoinDialog
 import com.ozaltun.coinxplorer.presentation.components.CoinText
 import com.ozaltun.coinxplorer.presentation.screens.detail.componets.DetailTopBar
 import com.ozaltun.coinxplorer.presentation.ui.theme.COINXPLORERTheme
+import com.ozaltun.coinxplorer.presentation.ui.theme.Shapes
 import com.ozaltun.coinxplorer.util.constant.Dimens
 
 @Composable
@@ -50,6 +61,9 @@ fun DetailScreen(
 ) {
     val state = viewModel.state
     val context = LocalContext.current
+    var expanded by remember {
+        mutableStateOf(false)
+    }
     if (viewModel.dialogState) {
         CoinDialog(
             onDismissRequest = { viewModel.dialogState = false },
@@ -83,7 +97,7 @@ fun DetailScreen(
             ) {
                 item {
                     Column(
-                        verticalArrangement = Arrangement.Center,
+                        verticalArrangement = Arrangement.spacedBy(12.dp),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Row(
@@ -140,12 +154,70 @@ fun DetailScreen(
                             }
                         }
                         CoinText(
-                            text = "${state.data?.description?.en}",
+                            text = stringResource(id = R.string.price_change_24h),
                             style = TextStyle(
                                 fontWeight = FontWeight.Bold,
                                 fontSize = Dimens.FontSize
                             )
                         )
+                        val coinPricePercentage = state.data?.price_change_24h
+                        if (coinPricePercentage != null) {
+                            CoinText(
+                                text = "% $coinPricePercentage",
+                                style = TextStyle(
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = Dimens.FontSizeSmall
+                                ),
+                                color =  when {
+                                    coinPricePercentage > 0 -> colorResource(id = R.color.green)
+                                    coinPricePercentage.toInt() == 0 -> colorResource(id = R.color.primary)
+                                    else -> colorResource(id = R.color.red)
+                                }
+                            )
+                        }
+                        if (!state.data?.description?.en.isNullOrEmpty()) {
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.SpaceBetween
+                            ) {
+                                Text(
+                                    text = stringResource(id = R.string.description),
+                                    fontSize = Dimens.FontSizeSmall,
+                                    fontWeight = FontWeight.Bold
+                                )
+                                Icon(
+                                    imageVector = if (expanded) Icons.Filled.KeyboardArrowUp else
+                                        Icons.Filled.KeyboardArrowDown,
+                                    contentDescription = "Down Arrow",
+                                    modifier = Modifier
+                                        .size(25.dp)
+                                        .clickable { expanded = !expanded },
+                                    tint = colorResource(id = R.color.primary)
+                                )
+                            }
+                            AnimatedVisibility(visible = expanded) {
+                                Card(
+                                    modifier = Modifier.padding(12.dp),
+                                    shape = Shapes.medium,
+                                    elevation = CardDefaults.cardElevation(6.dp),
+                                    colors = CardDefaults.cardColors(
+                                        colorResource(id = R.color.primary)
+                                    )
+                                ) {
+                                    Box(
+                                        modifier = Modifier.padding(12.dp)
+                                    ) {
+                                        Text(
+                                            text = "${state.data?.description?.en}",
+                                            style = TextStyle(
+                                                fontWeight = FontWeight.Bold,
+                                                fontSize = Dimens.FontSize
+                                            )
+                                        )
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }

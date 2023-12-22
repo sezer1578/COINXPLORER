@@ -15,4 +15,5 @@ data class CoinDetail(
     val symbol: String,
     val hashing_algorithm: String,
     val currentPrice: Double,
+    val price_change_24h:Double
 )
