@@ -1,17 +1,18 @@
 # COINXPLORER
 
-### Crypto Coin is an cryptocurrencies application with MVVM & Clean Arch - Hilt - Coroutines Flow - Retrofit - Firebase - Room DB - WorkManager - Navigation Component - Internal Notification.
+### COINXPLORER is a cryptocurrency application with MVVM & Clean Arch - Hilt - Coroutines Flow - Retrofit - Firebase - Room DB - WorkManager - Navigation Component - Internal Notification.
 [API Link](https://www.coingecko.com/en/api)
 
 ## Project Features
  - MVVM with Clean Architecture
  - Coroutines & Flow
  - Navigation Components
+ - Jetpack Compose
  - Hilt for Dependency Injection
  - Retrofit
  - Firebase Auth & Firestore
  - Room Database
- - Glide
+ - Coil
  - WorkManager
  - Internal Notification
 
