@@ -1,7 +1,6 @@
 # COINXPLORER
 
 ### COINXPLORER is a cryptocurrency application with MVVM & Clean Arch - Hilt - Coroutines Flow - Retrofit - Firebase - Room DB - WorkManager - Navigation Component - Internal Notification.
-[API Link](https://www.coingecko.com/en/api)
 
 ## Project Features
  - Jetpack Compose
@@ -40,3 +39,4 @@
 | Search |
 | ------ |
 |<img src="https://github.com/sezer1578/COINXPLORER/assets/26059113/6aae2197-32d1-48ff-819b-c2c6c51b93fb" width="225" height="500"/>|
+[API Link](https://www.coingecko.com/en/api)
