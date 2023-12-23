@@ -20,7 +20,13 @@
 
 | Splash | Sign Up | Sign In |
 | ------ | ---- | ------ |
-|<img src="https://github.com/sezer1578/COINXPLORER/assets/26059113/62f26dbe-7513-4960-b6b7-0dc9ba23ceac" width="225" height="500"/>|<img src="https://github.com/sezer1578/COINXPLORER/assets/26059113/7e1d387c-7a55-43f2-b4e2-2b9894e50acb" width="225" height="500"/>|<img src="https://github.com/sezer1578/COINXPLORER/assets/26059113/d14d72f9-ad8e-49b7-83d1-799a2965205b" width="225" height="500"/>|
+|<img src="https://github.com/sezer1578/COINXPLORER/assets/26059113/62f26dbe-7513-4960-b6b7-0dc9ba23ceac" width="225" height="500"/>|<img src="https://github.com/sezer1578/COINXPLORER/assets/26059113/7e1d387c-7a55-43f2-b4e2-2b9894e50acb" width="225" height="500"/>|<img src="https://github.com/sezer1578/COINXPLORER/assets/26059113/040aa414-a8a0-48d5-a24f-6f42aa17eeaa" width="225" height="500"/>|
+
+</br>
+
+| Onboarding1 | Onboarding2 | Onboarding3 |
+| --- | ------- | ------- |
+|<img src="https://github.com/sezer1578/COINXPLORER/assets/26059113/b2b5a10e-1c83-476f-8531-29f36ea878be" width="225" height="500"/>|<img src="https://github.com/sezer1578/COINXPLORER/assets/26059113/31be565a-3526-4f2a-981c-c78a20fbf93f" width="225" height="500"/>|<img src="https://user-images.githubusercontent.com/29903779/183875483-b5bbb95f-5194-443d-bd0c-c80277b1f9f1.jpg" width="225" height="500"/>|
 
 </br>
 
