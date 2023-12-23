@@ -2,44 +2,44 @@
     <string name="app_name">COINXPLORER</string>
 
     <!-- Error -->
-    <string name="error_connection_not_found">Bağlantı yok! Lütfen bağlantı ayarlarınızı kontrol edin.</string>
-    <string name="error_connection_timeout">Bağlantı zaman aşımına uğradı!</string>
-    <string name="error_endpoint">Bağlantı adresine erişilemiyor!</string>
-    <string name="error_unknown">İsteğinizi şuanda gerçekleştiremiyoruz.\nLütfen daha sonra tekrar deneyin!</string>
-    <string name="error_many_request">Çok Fazla İstek Yapıldı.\nLütfen daha sonra tekrar deneyin!</string>
+    <string name="error_connection_not_found">No connection! Please check your connection settings.</string>
+    <string name="error_connection_timeout">Connection timed out!</string>
+    <string name="error_endpoint">The link address cannot be accessed!</string>
+    <string name="error_unknown">We cannot fulfill your request at this time.\Please try again later!</string>
+    <string name="error_many_request">Too Many Requests Made.\nPlease try again later!</string>
     <!-- Error -->
-    <string name="alert_okay">Tamam</string>
-    <string name="alert">Uyarı!</string>
+    <string name="alert_okay">Okay</string>
+    <string name="alert">Warning!</string>
 
     <!-- LoginScreen -->
-    <string name="sign_in">Giriş Yapın</string>
+    <string name="sign_in">Sign In</string>
     <string name="e_mail">Email</string>
-    <string name="password">Şifre</string>
-    <string name="sign_up">Kayıt Ol</string>
+    <string name="password">Password</string>
+    <string name="sign_up">Sign Up</string>
 
     <!-- OnBoarding Screen -->
-    <string name="next">İleri</string>
-    <string name="back">Geri</string>
-    <string name="get_started">Başla</string>
+    <string name="next">Next</string>
+    <string name="back">Back</string>
+    <string name="get_started">Get Started</string>
     <!-- BottomBar -->
     <string name="home_screen">Home</string>
     <string name="search_screen">Search</string>
     <string name="favorite_screen">Favorite</string>
     <string name="profile_screen">Profile</string>
     <!-- EmptyScreen -->
-    <string name="try_again">Tekrar Dene</string>
+    <string name="try_again">Try Again</string>
     <!-- HomeScreen -->
-    <string name="search">Ara</string>
-    <string name="welcome">Hoş geldin</string>
+    <string name="search">Search</string>
+    <string name="welcome">Welcome</string>
     <!-- DetailScreen -->
-    <string name="current_price">Güncel Fiyat</string>
-    <string name="hashing_algorithm">Hashing Algoritması</string>
-    <string name="description">Açıklama için Tıkla</string>
-    <string name="price_change_24h">Son 24 saat Değişim Yüzdesi</string>
+    <string name="current_price">Current Price</string>
+    <string name="hashing_algorithm">Hashing Algorithm</string>
+    <string name="description">Click for description</string>
+    <string name="price_change_24h">Price change 24H</string>
 
     <!-- FavScreen -->
-    <string name="fav_screen">Kaydettiklerim</string>
-    <string name="delete_fav">Kaydettiklerimden Sil</string>
+    <string name="fav_screen">Bookmarks</string>
+    <string name="delete_fav">Delete</string>
     <!-- Notification -->
-    <string name="description_noti">Favoriye eklediklerinin fiyatı değişti</string>
+    <string name="description_noti">The price of the items you added to your favorites has changed</string>
 </resources>

@@ -38,8 +38,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.work.WorkInfo
+import androidx.work.workDataOf
 import com.ozaltun.coinxplorer.R
 import com.ozaltun.coinxplorer.domain.model.Coin
 import com.ozaltun.coinxplorer.presentation.MainActivity
@@ -48,8 +50,10 @@ import com.ozaltun.coinxplorer.presentation.components.CoinList
 import com.ozaltun.coinxplorer.presentation.components.CoinTopBar
 import com.ozaltun.coinxplorer.presentation.components.SearchBar
 import com.ozaltun.coinxplorer.presentation.screens.search.SearchScreenViewModel
+import com.ozaltun.coinxplorer.util.constant.Constant
 import com.ozaltun.coinxplorer.util.constant.Dimens.ExtraSmallPadding
 import com.ozaltun.coinxplorer.util.constant.Dimens.MediumPadding1
+import com.ozaltun.coinxplorer.util.notification.NotificationUtils
 import timber.log.Timber
 
 @Composable
@@ -59,11 +63,22 @@ fun HomeScreen(
     navigateToDetails: (String) -> Unit,
     viewModel: HomeScreenViewModel = hiltViewModel(),
 ) {
-    val lifecycleOwner = LocalLifecycleOwner.current
-    val workInfo by viewModel.workInfoLiveData.observeAsState(initial = emptyList())
+    val context = LocalContext.current
+  /*  val lifecycleOwner = LocalLifecycleOwner.current
+    val work by viewModel.workInfoLiveData.observeAsState(initial = emptyList())
+    if (work == null || work.isEmpty()) {
+        Timber.tag("Sezer").d("workInfo: Empty or null")
+    } else {
+        val workInfo: WorkInfo = work[0]
+        if (workInfo.state == WorkInfo.State.ENQUEUED) {
+            viewModel.getCoins()
+            Timber.tag("Sezer").d("workInfo")
+        }
+    }*/
+    val lifecycleOwner = LocalContext.current as LifecycleOwner
+
     DisposableEffect(Unit) {
-        val workInfoLiveData = viewModel.workInfoLiveData
-        val observer = Observer<List<WorkInfo>> { listOfWorkInfo ->
+        val observer = androidx.lifecycle.Observer<List<WorkInfo>> { listOfWorkInfo ->
             if (listOfWorkInfo.isNullOrEmpty()) {
                 return@Observer
             }
@@ -72,14 +87,17 @@ fun HomeScreen(
 
             if (workInfo.state == WorkInfo.State.ENQUEUED) {
                 viewModel.getCoins()
+                Timber.tag("Sezer").d("workInfo is worked")
             }
         }
-        workInfoLiveData.observe(lifecycleOwner, observer)
+
+        viewModel.workInfo.observe(lifecycleOwner, observer)
+
         onDispose {
-            workInfoLiveData.removeObserver(observer)
+            viewModel.workInfo.removeObserver(observer)
         }
     }
-    val context = LocalContext.current
+
     if (viewModel.dialogState) {
         CoinDialog(
             onDismissRequest = { viewModel.dialogState = false },

@@ -1,10 +1,12 @@
 package com.ozaltun.coinxplorer.util.worker
 
 import android.content.Context
+import androidx.lifecycle.LiveData
 import androidx.work.Constraints
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.NetworkType
 import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkInfo
 import androidx.work.WorkManager
 import com.ozaltun.coinxplorer.util.constant.Constant.SYNC_DATA
 import com.ozaltun.coinxplorer.util.constant.Constant.SYNC_DATA_WORK_NAME
@@ -21,11 +23,10 @@ class WorkerImpl @Inject constructor(context: Context) : WorkerInterface {
         .build()
 
     override fun createWork() {
-
         val workRequest = PeriodicWorkRequestBuilder<CoinWorker>(
-            15, TimeUnit.SECONDS,
-            15, TimeUnit.SECONDS
-        ).setConstraints(workConstraints).setInitialDelay(15, TimeUnit.SECONDS).addTag(SYNC_DATA)
+            15, TimeUnit.MINUTES,
+            15, TimeUnit.MINUTES
+        ).setConstraints(workConstraints).setInitialDelay(15, TimeUnit.MINUTES).addTag(SYNC_DATA)
             .build()
 
         workManager.enqueueUniquePeriodicWork(
@@ -35,5 +36,8 @@ class WorkerImpl @Inject constructor(context: Context) : WorkerInterface {
         )
     }
 
-    override fun onSuccess() = workManager.getWorkInfosByTagLiveData(SYNC_DATA)
+    override fun onSuccess(): LiveData<List<WorkInfo>> {
+        return workManager.getWorkInfosByTagLiveData(SYNC_DATA)
+    }
+
 }

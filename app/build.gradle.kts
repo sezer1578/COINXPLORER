@@ -140,7 +140,7 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore-ktx")
 
     //WorkManager
-    implementation ("androidx.work:work-runtime-ktx:2.9.0")
+    implementation ("androidx.work:work-runtime-ktx:2.7.1")
 
     //Room Database
     implementation ("androidx.room:room-ktx:$room_version")

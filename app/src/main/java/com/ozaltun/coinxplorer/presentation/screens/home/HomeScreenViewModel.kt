@@ -14,7 +14,6 @@ import com.ozaltun.coinxplorer.domain.usecase.firebase.SignOutUseCase
 import com.ozaltun.coinxplorer.util.network.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -23,11 +22,11 @@ class HomeScreenViewModel @Inject constructor(
     private val getCoinUseCase: GetCoinUseCase,
     private val signOutUseCase: SignOutUseCase,
     private val getCurrentUserUseCase: GetCurrentUserUseCase,
-    private val workerUseCase: WorkerUseCase
+    private val workerUseCase: WorkerUseCase,
 ) : ViewModel() {
     var state by mutableStateOf(HomeState(isLoading = true))
     var dialogState by mutableStateOf(false)
-    val workInfoLiveData: LiveData<List<WorkInfo>> = workerUseCase()
+    val workInfo = workerUseCase.invoke()
     fun getCoins() {
         viewModelScope.launch(Dispatchers.IO) {
             getCoinUseCase.invoke().collect { result ->

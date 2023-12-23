@@ -22,8 +22,8 @@ object Constant {
 
     const val TITLE = "COINXPLORER"
     val DESCRIPTION = getContext().getString(R.string.description_noti)
-    const val CHANNEL_ID = "Coin"
-    const val CHANNEL_NAME = "CoinChannel"
+    const val CHANNEL_ID = "MyTask"
+    const val CHANNEL_NAME = "MyTaskChannel"
     const val SYNC_DATA_WORK_NAME = "syncDataWorkName"
     const val SYNC_DATA = "syncData"
 }

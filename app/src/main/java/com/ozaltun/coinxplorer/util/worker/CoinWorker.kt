@@ -16,41 +16,46 @@ import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.forEach
+import timber.log.Timber
 
 @HiltWorker
 class CoinWorker @AssistedInject constructor(
     @Assisted appContext: Context,
     @Assisted workerParams: WorkerParameters,
-    private val getFavFirebaseUseCase: GetFavFirebaseUseCase,
-    private val getCoinUseCase: GetCoinUseCase
+    private val getFavFirebaseUseCase: FireBaseRepository,
+    private val getCoinUseCase: CoinRepository
 ) : CoroutineWorker(appContext, workerParams) {
     override suspend fun doWork(): Result {
         return try {
             var isEqualState = true
-
-            getFavFirebaseUseCase.invoke().collect { result ->
+            getFavFirebaseUseCase.getFavourites().collect { result ->
                 when (result) {
                     is Resource.Loading -> {
-
                     }
+
                     is Resource.Success -> {
                         if (result.data.isNotEmpty()) {
                             result.data.forEach { coinFav ->
-                                getCoinUseCase.invoke().collect { resultCoins ->
+                                getCoinUseCase.getCoins().collect { resultCoins ->
                                     when (resultCoins) {
                                         is Resource.Error -> {
-
+                                            Timber.tag("Sezer").d(resultCoins.exception.toString())
                                         }
+
                                         is Resource.Loading -> {
-
+                                            Timber.tag("Sezer").d(resultCoins.isLoading.toString())
                                         }
+
                                         is Resource.Success -> {
                                             resultCoins.data.forEach { coin ->
-                                                if (coinFav.name == coin.name && coinFav.currentPrice != coin.current_price) {
+                                                if ((coinFav.name == coin.name) && (coinFav.currentPrice != coin.current_price)) {
                                                     isEqualState = !isEqualState
+                                                    Timber.tag("Sezer").d(isEqualState.toString())
                                                 }
                                             }
                                         }
+
+                                        else -> {}
                                     }
                                 }
                             }
@@ -63,8 +68,9 @@ class CoinWorker @AssistedInject constructor(
                     }
 
                     is Resource.Error -> {
-                        Result.failure()
                     }
+
+                    else -> {}
                 }
             }
             Result.success()
