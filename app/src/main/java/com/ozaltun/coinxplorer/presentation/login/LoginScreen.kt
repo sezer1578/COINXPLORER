@@ -1,6 +1,8 @@
 package com.ozaltun.coinxplorer.presentation.login
 
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Intent
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
@@ -19,11 +21,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ozaltun.coinxplorer.R
+import com.ozaltun.coinxplorer.presentation.MainActivity
 import com.ozaltun.coinxplorer.presentation.components.CoinDialog
 import com.ozaltun.coinxplorer.presentation.components.CoinTopBar
 import com.ozaltun.coinxplorer.presentation.login.component.LoginCard
@@ -32,8 +36,9 @@ import com.ozaltun.coinxplorer.util.constant.Dimens
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun LoginScreen(viewModel:LoginViewModel = hiltViewModel()) {
+fun LoginScreen(viewModel: LoginViewModel = hiltViewModel()) {
     val state = viewModel.state
+    val context = LocalContext.current
     val emailSignIn = remember {
         mutableStateOf("")
     }
@@ -77,8 +82,17 @@ fun LoginScreen(viewModel:LoginViewModel = hiltViewModel()) {
                         textMail = emailSignIn.value,
                         textPassword = passwordSignIn.value,
                         onValueChangeMail = { emailSignIn.value = it },
-                        onValueChangePassword = {passwordSignIn.value = it},
-                        onClick = {}
+                        onValueChangePassword = { passwordSignIn.value = it },
+                        onClick = {
+                            viewModel.signIn(emailSignIn.value, passwordSignIn.value)
+                            if (state.success == true){
+                                val activity = context as? Activity
+                                activity?.startActivity(Intent(context, MainActivity::class.java))
+                                activity?.finish()
+                            }else{
+                                viewModel.dialogState = true
+                            }
+                        }
                     )
                     //SignUp
                     LoginCard(
@@ -87,9 +101,9 @@ fun LoginScreen(viewModel:LoginViewModel = hiltViewModel()) {
                         textMail = emailSignUp.value,
                         textPassword = passwordSignUp.value,
                         onValueChangeMail = { emailSignUp.value = it },
-                        onValueChangePassword = {passwordSignUp.value = it},
+                        onValueChangePassword = { passwordSignUp.value = it },
                         onClick = {
-                            viewModel.signUp(emailSignUp.value,passwordSignUp.value)
+                            viewModel.signUp(emailSignUp.value, passwordSignUp.value)
                         }
                     )
                 }

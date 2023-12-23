@@ -12,9 +12,11 @@ import com.ozaltun.coinxplorer.domain.usecase.firebase.SignUpUseCase
 import com.ozaltun.coinxplorer.presentation.screens.home.HomeState
 import com.ozaltun.coinxplorer.util.network.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -25,7 +27,18 @@ class LoginViewModel @Inject constructor(
 ) : ViewModel() {
     var state by mutableStateOf(LoginState())
     var dialogState by mutableStateOf(false)
-    fun signUp(email: String, password: String) = viewModelScope.launch {
+
+    var splashCondition by mutableStateOf(true)
+        private set
+
+    init {
+        viewModelScope.launch {
+            delay(300)
+            splashCondition = false
+        }
+    }
+
+    fun signUp(email: String, password: String) = viewModelScope.launch(Dispatchers.IO) {
         signUpUseCase.invoke(email, password).collect { result ->
             when (result) {
                 is Resource.Loading -> {
@@ -33,11 +46,14 @@ class LoginViewModel @Inject constructor(
                         isLoading = result.isLoading
                     )
                 }
+
                 is Resource.Success -> {
                     state = state.copy(
-                        data = result.data
+                        data = result.data,
+                        success = true
                     )
                 }
+
                 is Resource.Error -> {
                     state = state.copy(
                         error = result.exception.message.toString()
@@ -50,13 +66,33 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    var splashCondition by mutableStateOf(true)
-        private set
+    fun signIn(email: String, password: String) = viewModelScope.launch(Dispatchers.IO) {
+        signInUseCase.invoke(email = email, password = password).collect { result ->
+            when (result) {
+                is Resource.Loading -> {
+                    state = state.copy(
+                        isLoading = result.isLoading
+                    )
+                }
 
-    init {
-        viewModelScope.launch {
-            delay(300)
-            splashCondition = false
+                is Resource.Success -> {
+                    state = state.copy(
+                        data = result.data,
+                        success = true
+                    )
+                }
+
+                is Resource.Error -> {
+                    state = state.copy(
+                        error = result.exception.message.toString()
+                    )
+                    if (state.error != null) {
+                        dialogState = true
+                    }
+                }
+            }
+
         }
+
     }
 }
