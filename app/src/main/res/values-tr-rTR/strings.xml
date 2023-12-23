@@ -29,4 +29,10 @@
     <string name="delete_fav">Sil</string>
     <string name="description_noti">Favoriye eklediklerinin fiyatı değişti</string>
     <string name="welcome">Hoş Geldin</string>
+    <string name="onboarding1_title">Bitcoin ve Değişen Finansal Manzara</string>
+    <string name="onboarding1_description">Bitcoin\'in geleneksel finansal sistemler üzerindeki etkisini ve potansiyelini inceleyin.\\nKripto dünyasının dönüştürücü gücünü keşfedin.</string>
+    <string name="onboarding2_title">Piyasa Analizi ve Grafik Okumak</string>
+    <string name="onboarding2_description">Kripto piyasasındaki trendleri anlamak için grafikler ve analizlerin dilini öğrenin.\\nFiyat hareketlerini takip ederek stratejiler oluşturun.</string>
+    <string name="onboarding3_title">Verilerin Gücü: Kripto Analizleri</string>
+    <string name="onboarding3_description">Kripto varlıklarının gelecekteki performansını tahmin etmek için veri analizlerine nasıl yaklaşılacağını öğrenin.\\nBilgiyi güce dönüştürün.</string>
 </resources>
