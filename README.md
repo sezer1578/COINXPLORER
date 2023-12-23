@@ -4,10 +4,10 @@
 [API Link](https://www.coingecko.com/en/api)
 
 ## Project Features
+ - Jetpack Compose
  - MVVM with Clean Architecture
  - Coroutines & Flow
  - Navigation Components
- - Jetpack Compose
  - Hilt for Dependency Injection
  - Retrofit
  - Firebase Auth & Firestore
