@@ -1,5 +1,6 @@
 package com.ozaltun.coinxplorer.presentation.components
 
+import android.graphics.drawable.Icon
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
@@ -23,14 +24,14 @@ import com.ozaltun.coinxplorer.R
 fun CoinTopBar(
     modifier: Modifier = Modifier,
     title: @Composable () -> Unit = {},
-    icon: ImageVector? = null,
+    icon: @Composable () -> Unit = {},
     onclick: () -> Unit = {},
     navigationIcon: @Composable () -> Unit = {}
 ) {
     TopAppBar(
         modifier = modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(bottomStart = 0.dp, bottomEnd = 64.dp)),
+            .clip(RoundedCornerShape(bottomStart = 0.dp, bottomEnd = 32.dp)),
         title = {
             title.invoke()
         },
@@ -38,16 +39,7 @@ fun CoinTopBar(
             containerColor = colorResource(id = R.color.primary)
         ),
         actions = {
-            if (icon != null) {
-                Icon(
-                    imageVector = icon,
-                    contentDescription = "Profile Icon",
-                    modifier = Modifier
-                        .size(42.dp)
-                        .clickable { onclick() },
-                    tint = colorResource(id = R.color.primary)
-                )
-            }
+           icon.invoke()
         },
         navigationIcon = { navigationIcon.invoke() }
     )

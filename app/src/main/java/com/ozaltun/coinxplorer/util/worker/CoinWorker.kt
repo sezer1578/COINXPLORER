@@ -7,6 +7,7 @@ import androidx.work.WorkerParameters
 import com.ozaltun.coinxplorer.domain.repository.CoinRepository
 import com.ozaltun.coinxplorer.domain.repository.FireBaseRepository
 import com.ozaltun.coinxplorer.domain.usecase.GetCoinUseCase
+import com.ozaltun.coinxplorer.domain.usecase.favorite.firebase.GetFavFirebaseUseCase
 import com.ozaltun.coinxplorer.util.constant.Constant.DESCRIPTION
 import com.ozaltun.coinxplorer.util.constant.Constant.TITLE
 import com.ozaltun.coinxplorer.util.network.Resource
@@ -20,19 +21,18 @@ import kotlinx.coroutines.flow.forEach
 class CoinWorker @AssistedInject constructor(
     @Assisted appContext: Context,
     @Assisted workerParams: WorkerParameters,
-    private val authRepository: FireBaseRepository,
+    private val getFavFirebaseUseCase: GetFavFirebaseUseCase,
     private val getCoinUseCase: GetCoinUseCase
 ) : CoroutineWorker(appContext, workerParams) {
     override suspend fun doWork(): Result {
         return try {
             var isEqualState = true
 
-            authRepository.getFavourites().collect { result ->
+            getFavFirebaseUseCase.invoke().collect { result ->
                 when (result) {
                     is Resource.Loading -> {
 
                     }
-
                     is Resource.Success -> {
                         if (result.data.isNotEmpty()) {
                             result.data.forEach { coinFav ->

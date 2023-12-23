@@ -29,7 +29,8 @@
     <!-- EmptyScreen -->
     <string name="try_again">Tekrar Dene</string>
     <!-- HomeScreen -->
-    <string name="search">Search</string>
+    <string name="search">Ara</string>
+    <string name="welcome">Hoş geldin</string>
     <!-- DetailScreen -->
     <string name="current_price">Güncel Fiyat</string>
     <string name="hashing_algorithm">Hashing Algoritması</string>

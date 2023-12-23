@@ -48,7 +48,6 @@ fun NewsNavigator() {
             BottomNavigationItem(icon = Icons.Default.Home, text = "Home"),
             BottomNavigationItem(icon = Icons.Default.Search, text = "Search"),
             BottomNavigationItem(icon = Icons.Default.Favorite, text = "Favorite"),
-            BottomNavigationItem(icon = Icons.Default.AccountCircle, text = "Profile"),
         )
     }
 
@@ -61,7 +60,6 @@ fun NewsNavigator() {
         Route.HomeScreen.route -> 0
         Route.SearchScreen.route -> 1
         Route.FavoriteScreen.route -> 2
-        Route.ProfileScreen.route -> 3
         else -> 0
     }
 
@@ -69,8 +67,7 @@ fun NewsNavigator() {
     val isBottomBarVisible = remember(key1 = backStackState) {
         backStackState?.destination?.route == Route.HomeScreen.route ||
                 backStackState?.destination?.route == Route.SearchScreen.route ||
-                backStackState?.destination?.route == Route.FavoriteScreen.route ||
-                backStackState?.destination?.route == Route.ProfileScreen.route
+                backStackState?.destination?.route == Route.FavoriteScreen.route
     }
 
 
@@ -94,11 +91,6 @@ fun NewsNavigator() {
                         2 -> navigateToTab(
                             navController = navController,
                             route = Route.FavoriteScreen.route
-                        )
-
-                        3 -> navigateToTab(
-                            navController = navController,
-                            route = Route.ProfileScreen.route
                         )
                     }
                 }
@@ -163,10 +155,6 @@ fun NewsNavigator() {
                 FavoriteScreen(
                 )
             }
-            composable(route = Route.ProfileScreen.route) {
-                OnBackClickStateSaver(navController = navController)
-                ProfileScreen()
-            }
         }
     }
 }
@@ -194,7 +182,6 @@ private fun navigateToTab(navController: NavController, route: String) {
 }
 
 private fun navigateToDetails(navController: NavController, coin: String) {
-    //val coinJson = Gson().toJson(coin)
     navController.currentBackStackEntry?.savedStateHandle?.set("coin", coin)
     navController.navigate(
         route = Route.DetailsScreen.route

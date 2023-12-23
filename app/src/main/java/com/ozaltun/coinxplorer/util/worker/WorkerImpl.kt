@@ -23,9 +23,9 @@ class WorkerImpl @Inject constructor(context: Context) : WorkerInterface {
     override fun createWork() {
 
         val workRequest = PeriodicWorkRequestBuilder<CoinWorker>(
-            15, TimeUnit.MINUTES,
-            15, TimeUnit.MINUTES
-        ).setConstraints(workConstraints).setInitialDelay(15, TimeUnit.MINUTES).addTag(SYNC_DATA)
+            15, TimeUnit.SECONDS,
+            15, TimeUnit.SECONDS
+        ).setConstraints(workConstraints).setInitialDelay(15, TimeUnit.SECONDS).addTag(SYNC_DATA)
             .build()
 
         workManager.enqueueUniquePeriodicWork(

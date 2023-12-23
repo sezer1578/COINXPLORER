@@ -3,6 +3,8 @@ package com.ozaltun.coinxplorer.presentation.login
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
@@ -17,12 +19,15 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -60,12 +65,15 @@ fun LoginScreen(viewModel: LoginViewModel = hiltViewModel()) {
         )
     }
 
-    Scaffold(Modifier.fillMaxSize(),
-        topBar = {
-            CoinTopBar(
-                title = { Text(text = "Giriş Yap") }
+    Scaffold(Modifier.fillMaxSize()) {
+        Box(modifier = Modifier.fillMaxSize()) {
+            Image(
+                painter = painterResource(id = R.drawable.login_background),
+                contentDescription = null,
+                contentScale = ContentScale.FillBounds,
+                modifier = Modifier.matchParentSize()
             )
-        }) {
+        }
         BoxWithConstraints(
             Modifier
                 .fillMaxWidth()
@@ -85,11 +93,11 @@ fun LoginScreen(viewModel: LoginViewModel = hiltViewModel()) {
                         onValueChangePassword = { passwordSignIn.value = it },
                         onClick = {
                             viewModel.signIn(emailSignIn.value, passwordSignIn.value)
-                            if (state.success == true){
+                            if (state.success == true) {
                                 val activity = context as? Activity
                                 activity?.startActivity(Intent(context, MainActivity::class.java))
                                 activity?.finish()
-                            }else{
+                            } else {
                                 viewModel.dialogState = true
                             }
                         }

@@ -3,20 +3,18 @@ package com.ozaltun.coinxplorer.data.repository
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.ozaltun.coinxplorer.data.remote.dto.Description
 import com.ozaltun.coinxplorer.data.remote.dto.Image
 import com.ozaltun.coinxplorer.domain.model.CoinDetail
-import com.ozaltun.coinxplorer.domain.model.CoinDetailFav
 import com.ozaltun.coinxplorer.domain.repository.FireBaseRepository
 import com.ozaltun.coinxplorer.util.extension.getErrorCode
 import com.ozaltun.coinxplorer.util.extension.toAppException
 import com.ozaltun.coinxplorer.util.network.Resource
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
-import timber.log.Timber
 import javax.inject.Inject
 
 class FireBaseRepositoryImpl @Inject constructor(
@@ -62,9 +60,7 @@ class FireBaseRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun signOut() {
-        firebaseAuth.signOut()
-    }
+    override fun signOut() = firebaseAuth.signOut()
 
     override fun getFirebaseUserUid(): Flow<String> = flow {
         firebaseAuth.currentUser?.uid?.let {
@@ -145,6 +141,22 @@ class FireBaseRepositoryImpl @Inject constructor(
                 emit(Resource.Success(data = data))
                 emit(Resource.Loading(isLoading = false))
             }
+        } catch (error: Throwable) {
+            val exception = error.toAppException()
+            val errorCode = error.getErrorCode()
+            emit(Resource.Error(exception = exception, errorCode = errorCode))
+            emit(Resource.Loading(isLoading = false))
+        }
+    }
+
+    override fun getCurrentUser(): Flow<Resource<FirebaseUser>> = flow {
+        emit(Resource.Loading(isLoading = true))
+        try {
+            firebaseAuth.currentUser?.let {
+                emit(Resource.Success(data = it))
+            }
+            emit(Resource.Loading(isLoading = false))
+
         } catch (error: Throwable) {
             val exception = error.toAppException()
             val errorCode = error.getErrorCode()
