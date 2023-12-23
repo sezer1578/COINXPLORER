@@ -44,6 +44,6 @@ fun CoinDetailDTO.toCoinDetail(): CoinDetail {
         symbol = symbol,
         hashing_algorithm = hashing_algorithm,
         currentPrice = market_data.current_price.usd,
-        price_change_24h = market_data.price_change_24h
+        price_change_percentage_24h = market_data.price_change_percentage_24h
     )
 }

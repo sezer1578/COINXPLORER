@@ -39,4 +39,6 @@
     <!-- FavScreen -->
     <string name="fav_screen">Kaydettiklerim</string>
     <string name="delete_fav">Kaydettiklerimden Sil</string>
+    <!-- Notification -->
+    <string name="description_noti">Favoriye eklediklerinin fiyatı değişti</string>
 </resources>

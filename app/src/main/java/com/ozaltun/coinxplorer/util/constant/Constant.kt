@@ -19,4 +19,11 @@ object Constant {
 
     const val USER_SETTINGS = "user_settings"
     const val APP_ENTRY = "app_entry"
+
+    const val TITLE = "COINXPLORER"
+    val DESCRIPTION = getContext().getString(R.string.description_noti)
+    const val CHANNEL_ID = "Coin"
+    const val CHANNEL_NAME = "CoinChannel"
+    const val SYNC_DATA_WORK_NAME = "syncDataWorkName"
+    const val SYNC_DATA = "syncData"
 }

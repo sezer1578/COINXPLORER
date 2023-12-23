@@ -65,6 +65,7 @@ fun DetailScreen(
     var expanded by remember {
         mutableStateOf(false)
     }
+    Timber.tag("Sezer").d("id: $id")
     if (viewModel.dialogState) {
         CoinDialog(
             onDismissRequest = { viewModel.dialogState = false },
@@ -164,7 +165,7 @@ fun DetailScreen(
                                 fontSize = Dimens.FontSize
                             )
                         )
-                        val coinPricePercentage = state.data?.price_change_24h
+                        val coinPricePercentage = state.data?.price_change_percentage_24h
                         if (coinPricePercentage != null) {
                             CoinText(
                                 text = "% $coinPricePercentage",

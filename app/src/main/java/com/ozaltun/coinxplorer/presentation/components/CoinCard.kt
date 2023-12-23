@@ -38,15 +38,12 @@ import com.ozaltun.coinxplorer.data.remote.dto.Description
 import com.ozaltun.coinxplorer.data.remote.dto.Image
 import com.ozaltun.coinxplorer.domain.model.Coin
 import com.ozaltun.coinxplorer.domain.model.CoinDetail
-import com.ozaltun.coinxplorer.domain.model.CoinSearch
 import com.ozaltun.coinxplorer.presentation.ui.theme.COINXPLORERTheme
 import com.ozaltun.coinxplorer.presentation.ui.theme.Shapes
-import com.ozaltun.coinxplorer.util.constant.Dimens
 import com.ozaltun.coinxplorer.util.constant.Dimens.ExtraSmallPadding2
 import com.ozaltun.coinxplorer.util.constant.Dimens.FontSize
 import com.ozaltun.coinxplorer.util.constant.Dimens.FontSizeSmall
 import com.ozaltun.coinxplorer.util.constant.Dimens.ImageSize
-import timber.log.Timber
 
 @Composable
 fun CoinCard(
@@ -159,7 +156,7 @@ fun CoinDetailCard(
                     .size(ImageSize)
                     .clip(MaterialTheme.shapes.medium)
                     .padding(ExtraSmallPadding2),
-                model = ImageRequest.Builder(context).data(coin.image.large).build(),
+                model = ImageRequest.Builder(context).data(coin.image?.large).build(),
                 contentDescription = null,
                 contentScale = ContentScale.Crop
             )
@@ -167,12 +164,14 @@ fun CoinDetailCard(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                CoinText(
-                    text = coin.name, style = TextStyle(
-                        fontSize = FontSize,
-                        fontWeight = FontWeight.Bold
+                coin.name?.let {
+                    CoinText(
+                        text = it, style = TextStyle(
+                            fontSize = FontSize,
+                            fontWeight = FontWeight.Bold
+                        )
                     )
-                )
+                }
                 CoinText(
                     text = "$${coin.currentPrice}", style = TextStyle(
                         fontWeight = FontWeight.SemiBold,
@@ -180,34 +179,38 @@ fun CoinDetailCard(
                     )
                 )
             }
-            val coinPricePercentage = coin.price_change_24h
+            val coinPricePercentage = coin.price_change_percentage_24h
             Row(
                 modifier = Modifier
                     .weight(1f)
                     .padding(end = 8.dp),
                 horizontalArrangement = Arrangement.End
             ) {
-                Icon(
-                    imageVector = when {
-                        coinPricePercentage > 0 -> Icons.Default.TrendingUp
-                        coinPricePercentage.toInt() == 0 -> Icons.Default.TrendingFlat
-                        else -> Icons.Default.TrendingDown
-                    },
-                    contentDescription = null,
-                    tint = when {
-                        coinPricePercentage > 0 -> colorResource(id = R.color.green)
-                        coinPricePercentage.toInt() == 0 -> colorResource(id = R.color.primary)
-                        else -> colorResource(id = R.color.red)
-                    }
-                )
-                CoinText(
-                    text = " % $coinPricePercentage",
-                    color = when {
-                        coinPricePercentage > 0 -> colorResource(id = R.color.green)
-                        coinPricePercentage.toInt() == 0 -> colorResource(id = R.color.primary)
-                        else -> colorResource(id = R.color.red)
-                    }
-                )
+                if (coinPricePercentage != null) {
+                    Icon(
+                        imageVector = when {
+                            coinPricePercentage > 0 -> Icons.Default.TrendingUp
+                            coinPricePercentage.toInt() == 0 -> Icons.Default.TrendingFlat
+                            else -> Icons.Default.TrendingDown
+                        },
+                        contentDescription = null,
+                        tint = when {
+                            coinPricePercentage > 0 -> colorResource(id = R.color.green)
+                            coinPricePercentage.toInt() == 0 -> colorResource(id = R.color.primary)
+                            else -> colorResource(id = R.color.red)
+                        }
+                    )
+                }
+                if (coinPricePercentage != null) {
+                    CoinText(
+                        text = " % $coinPricePercentage",
+                        color = when {
+                            coinPricePercentage > 0 -> colorResource(id = R.color.green)
+                            coinPricePercentage.toInt() == 0 -> colorResource(id = R.color.primary)
+                            else -> colorResource(id = R.color.red)
+                        }
+                    )
+                }
             }
         }
         Box(
@@ -246,7 +249,7 @@ fun CoinDetailCardPreview() {
                 symbol = "BTC",
                 hashing_algorithm = "256",
                 currentPrice = 43.34,
-                price_change_24h = 1.2
+                price_change_percentage_24h = 1.2
             )
         )
     }

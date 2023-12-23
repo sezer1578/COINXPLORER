@@ -117,7 +117,7 @@ class FireBaseRepositoryImpl @Inject constructor(
                     val symbol = document.getString("symbol") ?: ""
                     val hashingAlgorithm = document.getString("hashing_algorithm") ?: ""
                     val currentPrice = document.getDouble("currentPrice") ?: 0.0
-                    val priceChange24h = document.getDouble("price_change_24h") ?: 0.0
+                    val priceChange24h = document.getDouble("price_change_percentage_24h") ?: 0.0
 
                     val description = document.get("description") as? Map<*, *>
                     val descriptionEN = (description?.get("en") as? String) ?: ""
