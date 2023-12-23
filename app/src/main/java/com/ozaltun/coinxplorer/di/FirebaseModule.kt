@@ -1,6 +1,7 @@
 package com.ozaltun.coinxplorer.di
 
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.ozaltun.coinxplorer.data.repository.FireBaseRepositoryImpl
 import com.ozaltun.coinxplorer.domain.repository.FireBaseRepository
 import dagger.Module
@@ -17,9 +18,14 @@ object FirebaseModule {
     @Provides
     fun provideFirebaseAuth(): FirebaseAuth = FirebaseAuth.getInstance()
 
+    @Singleton
+    @Provides
+    fun provideFirebaseFirestore(): FirebaseFirestore = FirebaseFirestore.getInstance()
+
     @Provides
     @Singleton
     fun provideFirebaseServices(
         firebaseAuth: FirebaseAuth,
-    ): FireBaseRepository = FireBaseRepositoryImpl(firebaseAuth)
+        firebaseFirestore: FirebaseFirestore
+    ): FireBaseRepository = FireBaseRepositoryImpl(firebaseAuth, firebaseFirestore)
 }

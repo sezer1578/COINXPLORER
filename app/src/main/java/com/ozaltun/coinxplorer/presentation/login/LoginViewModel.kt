@@ -71,7 +71,7 @@ class LoginViewModel @Inject constructor(
             when (result) {
                 is Resource.Loading -> {
                     state = state.copy(
-                        isLoading = result.isLoading
+                        isLoading = result.isLoading,
                     )
                 }
 
@@ -84,7 +84,8 @@ class LoginViewModel @Inject constructor(
 
                 is Resource.Error -> {
                     state = state.copy(
-                        error = result.exception.message.toString()
+                        error = result.exception.message.toString(),
+                        success = false
                     )
                     if (state.error != null) {
                         dialogState = true

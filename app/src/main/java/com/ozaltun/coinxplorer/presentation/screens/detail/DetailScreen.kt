@@ -79,7 +79,10 @@ fun DetailScreen(
     Scaffold(modifier = Modifier.fillMaxSize(),
         topBar = {
             DetailTopBar(onBookMarkClick = {
-                state.data?.let { viewModel.insertFavCoin(coin = it) }
+                if (state.data != null) {
+                    //viewModel.insertFavCoin(coin = state.data)
+                    viewModel.addToFavFireStore(coin = state.data)
+                }
             }) {
                 navigateUp.invoke()
             }
@@ -169,7 +172,7 @@ fun DetailScreen(
                                     fontWeight = FontWeight.Bold,
                                     fontSize = Dimens.FontSizeSmall
                                 ),
-                                color =  when {
+                                color = when {
                                     coinPricePercentage > 0 -> colorResource(id = R.color.green)
                                     coinPricePercentage.toInt() == 0 -> colorResource(id = R.color.primary)
                                     else -> colorResource(id = R.color.red)

@@ -6,6 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ozaltun.coinxplorer.domain.usecase.GetCoinUseCase
+import com.ozaltun.coinxplorer.domain.usecase.firebase.SignOutUseCase
 import com.ozaltun.coinxplorer.util.network.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -14,7 +15,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeScreenViewModel @Inject constructor(
-    private val getCoinUseCase: GetCoinUseCase
+    private val getCoinUseCase: GetCoinUseCase,
+    private val signOutUseCase: SignOutUseCase
 ) : ViewModel() {
     var state by mutableStateOf(HomeState(isLoading = true))
     var dialogState by mutableStateOf(false)
@@ -46,4 +48,5 @@ class HomeScreenViewModel @Inject constructor(
             }
         }
     }
+    fun signOut() = signOutUseCase.invoke()
 }

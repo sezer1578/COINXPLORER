@@ -9,9 +9,9 @@ import com.ozaltun.coinxplorer.domain.usecase.SearchCoinUseCase
 import com.ozaltun.coinxplorer.domain.usecase.app_entry.AppEntryUseCases
 import com.ozaltun.coinxplorer.domain.usecase.app_entry.ReadAppEntry
 import com.ozaltun.coinxplorer.domain.usecase.app_entry.SaveAppEntry
-import com.ozaltun.coinxplorer.domain.usecase.local_usecase.DeleteFavCoinUseCase
-import com.ozaltun.coinxplorer.domain.usecase.local_usecase.GetFavCoinUseCase
-import com.ozaltun.coinxplorer.domain.usecase.local_usecase.InsertFavCoinUseCase
+import com.ozaltun.coinxplorer.domain.usecase.favorite.local_usecase.DeleteFavCoinUseCase
+import com.ozaltun.coinxplorer.domain.usecase.favorite.local_usecase.GetFavCoinUseCase
+import com.ozaltun.coinxplorer.domain.usecase.favorite.local_usecase.InsertFavCoinUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

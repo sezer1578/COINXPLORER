@@ -1,4 +1,4 @@
-package com.ozaltun.coinxplorer.domain.usecase.local_usecase
+package com.ozaltun.coinxplorer.domain.usecase.favorite.local_usecase
 
 import com.ozaltun.coinxplorer.domain.model.CoinDetail
 import com.ozaltun.coinxplorer.domain.repository.LocalCoinRepository

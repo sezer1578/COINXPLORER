@@ -73,6 +73,7 @@ android {
 
 dependencies {
 
+
     val nav_version = "2.6.0"
     val lifecycle_version = "2.6.2"
     val room_version = "2.6.1"
@@ -135,6 +136,7 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-auth:22.3.0")
+    implementation("com.google.firebase:firebase-firestore-ktx")
 
     //Room Database
     implementation ("androidx.room:room-ktx:$room_version")
