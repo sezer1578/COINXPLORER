@@ -6,6 +6,7 @@ import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.ozaltun.coinxplorer.domain.repository.CoinRepository
 import com.ozaltun.coinxplorer.domain.repository.FireBaseRepository
+import com.ozaltun.coinxplorer.domain.usecase.GetCoinByIdUseCase
 import com.ozaltun.coinxplorer.domain.usecase.GetCoinUseCase
 import com.ozaltun.coinxplorer.util.constant.Constant.DESCRIPTION
 import com.ozaltun.coinxplorer.util.constant.Constant.TITLE
@@ -20,7 +21,7 @@ class CoinWorker @AssistedInject constructor(
     @Assisted appContext: Context,
     @Assisted workerParams: WorkerParameters,
     private val getFavFirebaseUseCase: FireBaseRepository,
-    private val getCoinUseCase: GetCoinUseCase
+    private val getCoinByIdUseCase: GetCoinByIdUseCase
 ) : CoroutineWorker(appContext, workerParams) {
 
     override suspend fun doWork(): Result {
@@ -28,23 +29,27 @@ class CoinWorker @AssistedInject constructor(
         return try {
             Timber.tag("Sezer").d("doWork")
             var isEqualState = true
+
             getFavFirebaseUseCase.getFavourites().collect { result ->
                 when (result) {
                     is Resource.Success -> {
                         Timber.tag("Sezer").d("Resource.Success ${result.data}")
                         if (result.data.isNotEmpty()) {
                             result.data.forEach { coinFav ->
-                                getCoinUseCase.invoke().collect { resultCoins ->
+                                Timber.tag("Sezer").d(coinFav.name)
+                                getCoinByIdUseCase.invoke(id = coinFav.id).collect { resultCoins ->
                                     when (resultCoins) {
                                         is Resource.Success -> {
-                                            resultCoins.data.forEach { coin ->
-                                                if ((coinFav.name == coin.name) && (coinFav.currentPrice != coin.current_price)) {
+                                            val oldPrice = coinFav.currentPrice
+                                            val newPrice = resultCoins.data.currentPrice
+                                            //resultCoins.data.forEach { coin ->
+                                                if (oldPrice != newPrice) {
                                                     isEqualState = !isEqualState
                                                     Timber.tag("Sezer").d(isEqualState.toString())
                                                 } else {
                                                     Timber.tag("Sezer").d("if else equals")
                                                 }
-                                            }
+                                            //}
                                         }
                                         is Resource.Error -> {
                                             Timber.tag("Sezer").d("Resource.Error ${resultCoins.exception}")
