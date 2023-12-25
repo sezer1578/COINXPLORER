@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">COINXPLORER</string>
+    <string name="error_connection_not_found">ağlantı yok! Lütfen bağlantı ayarlarınızı kontrol edin.</string>
+    <string name="error_connection_timeout">Bağlantı zaman aşımına uğradı!</string>
+    <string name="error_endpoint">Bağlantı adresine erişilemiyor!</string>
+    <string name="error_unknown">İsteğinizi şuanda gerçekleştiremiyoruz.\\nLütfen daha sonra tekrar deneyin!</string>
+    <string name="error_many_request">Çok Fazla İstek Yapıldı.\\nLütfen daha sonra tekrar deneyin!</string>
+    <string name="alert_okay">Tamam</string>
+    <string name="alert">Uyarı!</string>
+    <string name="sign_in">Giriş Yap</string>
+    <string name="e_mail">Email</string>
+    <string name="password">Şifre</string>
+    <string name="sign_up">Kayıt Ol</string>
+    <string name="next">İleri</string>
+    <string name="back">Geri</string>
+    <string name="get_started">Başla</string>
+    <string name="home_screen">Anasayfa</string>
+    <string name="search_screen">Ara</string>
+    <string name="favorite_screen">Favori</string>
+    <string name="profile_screen">Profil</string>
+    <string name="try_again">Tekrar Dene</string>
+    <string name="search">Ara</string>
+    <string name="current_price">Güncel Fiyat</string>
+    <string name="hashing_algorithm">Hashing Algoritması</string>
+    <string name="description">Açıklama için Tıkla</string>
+    <string name="price_change_24h">Son 24 saat Değişim Yüzdesi</string>
+    <string name="fav_screen">Kaydettiklerim</string>
+    <string name="delete_fav">Sil</string>
+    <string name="description_noti">Favoriye eklediklerinin fiyatı değişti</string>
+    <string name="welcome">Hoş Geldin</string>
+    <string name="onboarding1_title">Bitcoin ve Değişen Finansal Manzara</string>
+    <string name="onboarding1_description">Bitcoin\'in geleneksel finansal sistemler üzerindeki etkisini ve potansiyelini inceleyin.\\nKripto dünyasının dönüştürücü gücünü keşfedin.</string>
+    <string name="onboarding2_title">Piyasa Analizi ve Grafik Okumak</string>
+    <string name="onboarding2_description">Kripto piyasasındaki trendleri anlamak için grafikler ve analizlerin dilini öğrenin.\\nFiyat hareketlerini takip ederek stratejiler oluşturun.</string>
+    <string name="onboarding3_title">Verilerin Gücü: Kripto Analizleri</string>
+    <string name="onboarding3_description">Kripto varlıklarının gelecekteki performansını tahmin etmek için veri analizlerine nasıl yaklaşılacağını öğrenin.\\nBilgiyi güce dönüştürün.</string>
+</resources>

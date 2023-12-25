@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">Coinxplorer</string>
+
+    <!-- Error -->
+    <string name="error_connection_not_found">No connection! Please check your connection settings.</string>
+    <string name="error_connection_timeout">Connection timed out!</string>
+    <string name="error_endpoint">The link address cannot be accessed!</string>
+    <string name="error_unknown">We cannot fulfill your request at this time.\Please try again later!</string>
+    <string name="error_many_request">Too Many Requests Made.\nPlease try again later!</string>
+    <!-- Error -->
+    <string name="alert_okay">Okay</string>
+    <string name="alert">Warning!</string>
+
+    <!-- LoginScreen -->
+    <string name="sign_in">Sign In</string>
+    <string name="e_mail">Email</string>
+    <string name="password">Password</string>
+    <string name="sign_up">Sign Up</string>
+
+    <!-- OnBoarding Screen -->
+    <string name="next">Next</string>
+    <string name="back">Back</string>
+    <string name="get_started">Get Started</string>
+    <string name="onboarding1_title">Bitcoin and the Evolving Financial Landscape</string>
+    <string name="onboarding1_description">Examine Bitcoin\'s impact on traditional financial systems and its potential transformative power.\\nExplore the transformative force of the crypto world.</string>
+    <string name="onboarding2_title">Market Analysis and Chart Reading</string>
+    <string name="onboarding2_description">Learn the language of charts and analysis to understand trends in the crypto market.\\nCreate strategies by tracking price movements.</string>
+    <string name="onboarding3_title">The Power of Data: Crypto Analysis</string>
+    <string name="onboarding3_description">Learn how to approach data analysis to predict the future performance of crypto assets.\\Turn information into power.</string>
+
+    <!-- BottomBar -->
+    <string name="home_screen">Home</string>
+    <string name="search_screen">Search</string>
+    <string name="favorite_screen">Favorite</string>
+    <string name="profile_screen">Profile</string>
+    <!-- EmptyScreen -->
+    <string name="try_again">Try Again</string>
+    <!-- HomeScreen -->
+    <string name="search">Search</string>
+    <string name="welcome">Welcome</string>
+    <!-- DetailScreen -->
+    <string name="current_price">Current Price</string>
+    <string name="hashing_algorithm">Hashing Algorithm</string>
+    <string name="description">Click for description</string>
+    <string name="price_change_24h">Price change 24H</string>
+
+    <!-- FavScreen -->
+    <string name="fav_screen">Bookmarks</string>
+    <string name="delete_fav">Delete</string>
+    <!-- Notification -->
+    <string name="description_noti">The price of the items you added to your favorites has changed</string>
+</resources>
