@@ -15,7 +15,6 @@
  - WorkManager
  - Internal Notification
 
-
 ## Screens
 
 | Splash | Sign Up | Sign In |
@@ -36,9 +35,9 @@
 
 </br>
 
-| Search |
-| ------ |
-|<img src="https://github.com/sezer1578/COINXPLORER/assets/26059113/6aae2197-32d1-48ff-819b-c2c6c51b93fb" width="225" height="500"/>|
+| Search | Notification |
+| --- | ------- |
+|<img src="https://github.com/sezer1578/COINXPLORER/assets/26059113/6aae2197-32d1-48ff-819b-c2c6c51b93fb" width="225" height="500"/>| <img src="https://github.com/sezer1578/COINXPLORER/assets/26059113/12c0137f-2ac1-47df-8ca6-446abab489dc" width="225" height="500"/>|
 </br>
 
 [API Link](https://www.coingecko.com/en/api)
