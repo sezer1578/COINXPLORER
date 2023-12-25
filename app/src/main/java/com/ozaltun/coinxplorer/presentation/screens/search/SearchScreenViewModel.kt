@@ -35,7 +35,6 @@ class SearchScreenViewModel @Inject constructor(
 
      fun searchCoin() {
         viewModelScope.launch(Dispatchers.IO) {
-            viewModelScope.launch(Dispatchers.IO) {
                 searchCoinUseCase.invoke(query = state.searchQuery).collect { result ->
                     when (result) {
                         is Resource.Loading -> {
@@ -60,7 +59,7 @@ class SearchScreenViewModel @Inject constructor(
                         }
                     }
                 }
-            }
+
         }
     }
 }

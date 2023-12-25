@@ -53,6 +53,8 @@ import com.ozaltun.coinxplorer.presentation.ui.theme.COINXPLORERTheme
 import com.ozaltun.coinxplorer.presentation.ui.theme.Shapes
 import com.ozaltun.coinxplorer.util.constant.Dimens
 import timber.log.Timber
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.milliseconds
 
 @Composable
 fun DetailScreen(
@@ -74,9 +76,13 @@ fun DetailScreen(
             icon = Icons.Default.Warning
         )
     }
+    val second = 10000
     LaunchedEffect(key1 = Unit) {
         viewModel.getCoinById(id = id)
+
     }
+    viewModel.getCurrentPriceById(period = second.milliseconds)
+    Timber.tag("Sezer").d("CurrentPrice: ${state.currentPrice}")
     Scaffold(modifier = Modifier.fillMaxSize(),
         topBar = {
             DetailTopBar(onBookMarkClick = {

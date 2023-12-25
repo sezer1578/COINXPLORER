@@ -7,6 +7,7 @@ import com.ozaltun.coinxplorer.domain.model.CoinDetail
 data class DetailScreenState(
     val data: CoinDetail? = null,
     val dataFireStore:Task<Void>? = null,
+    val currentPrice:Double? = null,
     val isLoading: Boolean = false,
     val error: String? = null
 )

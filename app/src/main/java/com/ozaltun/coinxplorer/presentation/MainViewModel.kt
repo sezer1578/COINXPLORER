@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ozaltun.coinxplorer.domain.usecase.WorkerUseCase
 import com.ozaltun.coinxplorer.domain.usecase.app_entry.AppEntryUseCases
 import com.ozaltun.coinxplorer.presentation.navgraph.Route
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,8 +16,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val appEntryUseCases: AppEntryUseCases
+    private val appEntryUseCases: AppEntryUseCases,
+    workerUseCase: WorkerUseCase,
 ) : ViewModel() {
+
+    val workInfo = workerUseCase.invoke()
     var splashCondition by mutableStateOf(true)
         private set
 

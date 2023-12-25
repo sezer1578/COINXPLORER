@@ -25,5 +25,6 @@ object Constant {
     const val CHANNEL_ID = "MyTask"
     const val CHANNEL_NAME = "MyTaskChannel"
     const val SYNC_DATA_WORK_NAME = "syncDataWorkName"
+    const val COIN_ID = "coinId"
     const val SYNC_DATA = "syncData"
 }

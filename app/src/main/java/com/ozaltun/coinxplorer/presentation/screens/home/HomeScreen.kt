@@ -77,7 +77,7 @@ fun HomeScreen(
     }*/
     val lifecycleOwner = LocalContext.current as LifecycleOwner
 
-    DisposableEffect(Unit) {
+  /*  DisposableEffect(Unit) {
         val observer = androidx.lifecycle.Observer<List<WorkInfo>> { listOfWorkInfo ->
             if (listOfWorkInfo.isNullOrEmpty()) {
                 return@Observer
@@ -96,7 +96,7 @@ fun HomeScreen(
         onDispose {
             viewModel.workInfo.removeObserver(observer)
         }
-    }
+    }*/
 
     if (viewModel.dialogState) {
         CoinDialog(

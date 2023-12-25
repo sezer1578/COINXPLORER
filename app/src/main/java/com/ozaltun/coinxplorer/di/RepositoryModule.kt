@@ -13,6 +13,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.CoroutineDispatcher
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -21,8 +23,11 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideCoinRepository(api: CoinxplorerApi): CoinRepository {
-        return CoinRepositoryImpl(api)
+    fun provideCoinRepository(
+        api: CoinxplorerApi,
+        @Named("Default") coContextDefault: CoroutineDispatcher
+    ): CoinRepository {
+        return CoinRepositoryImpl(api,coContextDefault)
     }
 
     @Provides
