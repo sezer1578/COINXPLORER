@@ -1,4 +1,4 @@
-# COINXPLORER
+<img src="https://github.com/sezer1578/COINXPLORER/assets/26059113/c945195b-1e35-4143-8703-4267986fdb77" width="500" height="150"/>
 
 ### COINXPLORER is a cryptocurrency application with MVVM & Clean Arch - Hilt - Coroutines Flow - Retrofit - Firebase - Room DB - WorkManager - Navigation Component - Internal Notification.
 
@@ -38,6 +38,13 @@
 | Search | Notification |
 | --- | ------- |
 |<img src="https://github.com/sezer1578/COINXPLORER/assets/26059113/6aae2197-32d1-48ff-819b-c2c6c51b93fb" width="225" height="500"/>| <img src="https://github.com/sezer1578/COINXPLORER/assets/26059113/12c0137f-2ac1-47df-8ca6-446abab489dc" width="225" height="500"/>|
+
+</br>
+
+| FireStore |
+| ------ |
+|<img src="https://github.com/sezer1578/COINXPLORER/assets/26059113/7d027dd5-f73f-4006-b555-6fce87d41376" width="800" height="500"/>|
+
 </br>
 
 [API Link](https://www.coingecko.com/en/api)
